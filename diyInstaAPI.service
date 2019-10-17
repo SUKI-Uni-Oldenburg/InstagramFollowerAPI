@@ -1,0 +1,13 @@
+[Unit]
+Description=Gunicorn instance to serve diyInstaAPI
+After=network.target
+
+[Service]
+User=esdkrwl
+Group=www-data
+WorkingDirectory=/home/esdkrwl/instaAPI
+Environment="PATH=/home/esdkrwl/instaAPI/deployenv/bin"
+ExecStart=/home/esdkrwl/instaAPI/deployenv/bin/gunicorn --workers 2 --bind unix:instaAPI.sock -m 007 wsgi
+
+[Install]
+WantedBy=multi-user.target
